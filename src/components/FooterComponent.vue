@@ -29,13 +29,16 @@ onMounted(() => {
       <h1>Produits</h1>
       <ul>
         <li>Tout</li>
-        <li v-for="category in mainCategories" :key="category.id">{{ category.name }}</li>
+<!--        todo: links-->
+        <li v-for="category in mainCategories" :key="category.id">
+          <router-link :to="todo" >{{ category.name }}</router-link>
+        </li>
       </ul>
     </div>
     <div>
-      <h1>A PROPOS</h1>
+      <h1>À propos</h1>
       <ul>
-        <li>A props de nous</li>
+        <li>À props de nous</li>
         <li>Contactez nous</li>
         <li>De gros</li>
         <li>Label privé</li>
@@ -47,7 +50,7 @@ onMounted(() => {
       </ul>
     </div>
     <div>
-      <h1>JURIDIQUE</h1>
+      <h1>Juridique</h1>
       <ul>
         <li>Conditions d'utilisation</li>
         <li>Politique de confidentialité</li>
@@ -83,7 +86,7 @@ onMounted(() => {
     </div>
     <div>
       <ul class="row">
-        <li>A props de nous</li>
+        <li>À props de nous</li>
         <li>Contactez nous</li>
         <li>De gros</li>
         <li>Label privé</li>
@@ -107,6 +110,10 @@ onMounted(() => {
     background-color: $footer-bg;
     padding: 4rem 2rem;
     font-family: $body;
+    a {
+      color: $white;
+      text-decoration: none;
+    }
     div {
       padding-bottom: 2rem;
       h1 {
