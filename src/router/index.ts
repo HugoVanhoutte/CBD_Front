@@ -1,14 +1,10 @@
-
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-
-import HomeView from '../views/HomeView.vue';
-import AgeCheck from '../views/AgeCheck.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: () => import('@/views/HomeView.vue'),
     beforeEnter: (to, from, next) => {
       const isMajeur = localStorage.getItem('isMajeur');
       if (isMajeur === 'true') {
@@ -21,19 +17,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
-  },
-  {
     path: '/access-denied',
     name: 'access-denied',
-    component: () => import(/* webpackChunkName: "access-denied" */ '../views/AccessDeniedView.vue'),
+    component: () => import(/* webpackChunkName: "access-denied" */ '@/views/AccessDeniedView.vue'),
   },
   {
     path: '/age-check',
     name: 'age-check',
-    component: AgeCheck,
+    component: () => import('@/views/AgeCheck.vue'),
   },
 ];
 
