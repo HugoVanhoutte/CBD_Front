@@ -8,13 +8,15 @@
 
 <script setup>
 
+import router from '@/router';
+
 const handleResponse = (isMajeur) => {
   if (isMajeur) {
     localStorage.setItem('isMajeur', true); // Sauvegarde dans le localStorage
-    this.$router.push({ name: 'home' }); // Rediriger vers la page d'accueil
+    router.push({ name: 'home' }); // Rediriger vers la page d'accueil
   } else {
     localStorage.setItem('isMajeur', false); // Sauvegarde dans le localStorage
-    this.$router.push({ name: 'access-denied' }); // Rediriger vers la page d'accès refusé
+    router.push({ name: 'access-denied' }); // Rediriger vers la page d'accès refusé
   }
 };
 
