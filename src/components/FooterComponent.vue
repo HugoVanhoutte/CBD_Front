@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Category } from '../../config';
+import store from '../store';
 
 const mainCategories = ref<Category[]>([]);
 const getMainCategories = async ():Promise<void> => {
@@ -28,10 +29,16 @@ onMounted(() => {
     <div>
       <h1>Produits</h1>
       <ul>
-        <li>Tout</li>
+        <li>
+          <router-link :to="{name: 'products', params: {category_id: 'all'}}">
+            Tout
+          </router-link>
+        </li>
 <!--        todo: links-->
         <li v-for="category in mainCategories" :key="category.id">
-          <router-link :to="todo" >{{ category.name }}</router-link>
+          <router-link :to="{name: 'products', params: {category_id: category.id}}">
+            {{ category.name }}
+          </router-link>
         </li>
       </ul>
     </div>

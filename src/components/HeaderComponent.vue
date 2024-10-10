@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import store from '../store';
 </script>
 
 <template>
@@ -11,12 +12,16 @@
   <div class="logo"><img src="../assets/images/logo.png" alt="Logo"></div>
   <div class="right">
     <div class="profile"><img src="../assets/images/profile.svg" alt="Profile"></div>
-    <div class="basket"><img src="../assets/images/shopping-basket.svg" alt="Panier"></div>
+    <div class="basket">
+      <img src="../assets/images/shopping-basket.svg" alt="Panier">
+      <span class="badge">{{ store.state.user.basket.length }}</span>
+    </div>
   </div>
 </header>
 </template>
 
 <style scoped lang="scss">
+@import '../assets/styles/variables';
 header {
   margin-top: -1rem;
   display: flex;
@@ -38,6 +43,23 @@ header {
         height: 30%;
         width: 50%;
       }
+      .badge {
+        background-color: red;
+        border-radius: 9999px;
+        color: white;
+
+        padding: 7px;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: $body;
+
+        position: absolute; /* Position the badge within the relatively positioned button */
+        top: 30%;
+        right: 10%;
+      }
+    }
+    .basket {
+      position: relative;
     }
   }
   div.logo {
