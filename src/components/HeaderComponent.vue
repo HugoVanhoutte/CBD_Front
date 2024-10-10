@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { Category } from '../../config';
 
+import store from '../store';
 const mainCategories = ref<Category[]>([]);
 const getMainCategories = async ():Promise<void> => {
   const res = await fetch('http://localhost:3001/api/categories/main', {
@@ -40,7 +41,10 @@ const toggleDisplay = () => {
   <div class="logo"><img src="../assets/images/logo.png" alt="Logo"></div>
   <div class="right">
     <div class="profile"><img src="../assets/images/profile.svg" alt="Profile"></div>
-    <div class="basket"><img src="../assets/images/shopping-basket.svg" alt="Panier"></div>
+    <div class="basket">
+      <img src="../assets/images/shopping-basket.svg" alt="Panier">
+      <span class="badge">{{ store.state.user.basket.length }}</span>
+    </div>
   </div>
 </header>
   <div class="menu" v-if="isMenuDisplayed">
@@ -87,6 +91,23 @@ header {
         height: 30%;
         width: 50%;
       }
+      .badge {
+        background-color: red;
+        border-radius: 9999px;
+        color: white;
+
+        padding: 7px;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: $body;
+
+        position: absolute; /* Position the badge within the relatively positioned button */
+        top: 30%;
+        right: 10%;
+      }
+    }
+    .basket {
+      position: relative;
     }
   }
   div.logo {
