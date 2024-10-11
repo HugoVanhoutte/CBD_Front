@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import router from '@/router';
 import { Category } from '../../config';
-
 import store from '../store';
+
 const mainCategories = ref<Category[]>([]);
 const getMainCategories = async ():Promise<void> => {
   const res = await fetch('http://localhost:3001/api/categories/main', {
@@ -26,10 +27,22 @@ const isMenuDisplayed = ref(false);
 const toggleDisplay = () => {
   isMenuDisplayed.value = !isMenuDisplayed.value;
 };
+
+const goToUserProfile = () => {
+  if (!store.state.user) {
+    router.push('/register');
+  } else {
+    console.log('Todo: envoyer user sur son profil');
+    // TODO: page profil
+  }
+};
 </script>
 
 <template>
 <header>
+  <pre>
+    {{ store.state.user }}
+  </pre>
   <div class="left">
     <div class="burger-menu">
       <button @click="toggleDisplay">
@@ -40,10 +53,16 @@ const toggleDisplay = () => {
   </div>
   <div class="logo"><img src="../assets/images/logo.png" alt="Logo"></div>
   <div class="right">
-    <div class="profile"><img src="../assets/images/profile.svg" alt="Profile"></div>
+    <div class="profile">
+      <button @click="goToUserProfile()">
+        <img src="../assets/images/profile.svg" alt="Profile">
+      </button>
+    </div>
     <div class="basket">
       <img src="../assets/images/shopping-basket.svg" alt="Panier">
-      <span class="badge">{{ store.state.user.basket.length }}</span>
+      <span class="badge">
+        {{ store.state.user !== undefined ? store.state.user.basket.length : 0}}
+      </span>
     </div>
   </div>
 </header>

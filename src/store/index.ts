@@ -3,13 +3,7 @@ import { ProductQuantity, User } from '../../config';
 
 export default createStore({
   state: {
-    user: {
-      id: 1 as number,
-      email: '' as string,
-      username: '' as string,
-      basket: [] as ProductQuantity[],
-      favorites: [] as number[],
-    } as User | undefined,
+    user: undefined as User | undefined,
     token: '' as string | undefined,
   },
   getters: {
