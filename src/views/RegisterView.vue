@@ -8,6 +8,9 @@ const isLogging = ref(true);
 const emailRegister = ref<string>('');
 const usernameRegister = ref<string>('');
 const passwordRegister = ref<string>('');
+const emailLogin = ref<string>('');
+const passwordLogin = ref<string>('');
+
 const register = async () => {
   const res = await fetch('http://localhost:3001/api/users/register', {
     method: 'POST',
@@ -30,7 +33,27 @@ const register = async () => {
   return undefined;
 };
 // TODO Ajouter verifications avant envoi user: password match, email correct, every field filled
-// Todo Ajouter login
+
+const login = async () => {
+  const res = await fetch('http://localhost:3001/api/users/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      user: {
+        email: emailLogin.value,
+        password: passwordLogin.value,
+      },
+    }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    console.log(`${res.status}: ${data.message}`);
+    return undefined;
+  }
+  localStorage.setItem('token', data.token);
+  await router.push('/');
+  return undefined;
+};
 </script>
 
 <template>
@@ -53,11 +76,21 @@ const register = async () => {
       <h1>Connexion au compte</h1>
       <label for="emailLogin">
         E-mail
-        <input type="email" id="emailLogin">
+        <input
+          type="email"
+          id="emailLogin"
+          v-model="emailLogin"
+          @keydown.enter="login()"
+        >
       </label>
       <label for="passwordLogin">
         Mot de passe
-        <input type="password" id="passwordLogin">
+        <input
+          type="password"
+          id="passwordLogin"
+          v-model="passwordLogin"
+          @keydown.enter="login()"
+        >
       </label>
       <button @click="login()">S'identifier</button>
       <router-link to="/">Mot de passe oublié ?</router-link>
@@ -66,19 +99,38 @@ const register = async () => {
       <h1>Création d'un compte</h1>
       <label for="emailRegister">
         E-mail
-        <input type="email" id="emailRegister" v-model="emailRegister">
+        <input
+          type="email"
+          id="emailRegister"
+          v-model="emailRegister"
+          @keydown.enter="register()"
+        >
       </label>
       <label for="usernameRegister">
         Nom d'utilisateur
-        <input type="text" id="usernameRegister" v-model="usernameRegister">
+        <input
+          type="text"
+          id="usernameRegister"
+          v-model="usernameRegister"
+          @keydown.enter="register()"
+        >
       </label>
       <label for="passwordRegister">
         Mot de passe
-        <input type="password" id="passwordRegister" v-model="passwordRegister">
+        <input
+          type="password"
+          id="passwordRegister"
+          v-model="passwordRegister"
+          @keydown.enter="register()"
+        >
       </label>
       <label for="passwordRepeat">
         Confirmez Mot de passe
-        <input type="password" id="passwordRepeat">
+        <input
+          type="password"
+          id="passwordRepeat"
+          @keydown.enter="register()"
+        >
       </label>
       <button @click="register()">Créer un compte</button>
     </div>

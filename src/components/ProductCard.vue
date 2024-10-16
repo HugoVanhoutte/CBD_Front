@@ -1,36 +1,14 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import store from '@/store';
+import {
+  defineProps, defineEmits,
+} from 'vue';
 
 const props = defineProps([
   'product',
 ]);
-const updateUser = async () => {
-  const res = await fetch(`http://localhost:3001/api/users/${store.state.user.id}`, {
-    method: 'PUT',
-    headers: { accepts: 'application/json' },
-    body: JSON.stringify({
-      user: store.state.user,
-    }),
-  });
-  if (!res.ok) {
-    console.error(res.status);
-  }
-};
-
+const emits = defineEmits(['add-to-basket']);
 const addToBasket = async (itemId: number): Promise<void> => {
-  const basket = store.getters.getUserBasket;
-  // Check if itemId already exists in store, if true: increment quantity, else push with quantity 1
-  // eslint-disable-next-line max-len
-  if (basket[basket.indexOf(basket.find((item: number) => item.product_id === itemId))] !== undefined && store.state.user !== undefined) {
-    basket[basket.indexOf(basket.find((item: number) => item.product_id === itemId))].quantity += 1;
-  } else {
-    basket.push({
-      product_id: itemId,
-      quantity: 1,
-    });
-  }
-  await updateUser();
+  emits('add-to-basket', itemId);
 };
 </script>
 
@@ -83,7 +61,7 @@ const addToBasket = async (itemId: number): Promise<void> => {
     justify-self: flex-start;
     overflow-y: scroll;
     overflow-x: clip;
-    //Hide scrollbar
+    //Hides scrollbar
     -ms-overflow-style: none;
     scrollbar-width: none;
   }

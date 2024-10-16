@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import ProductCard from '@/components/ProductCard.vue';
+import store from '@/store';
 import { Category, Product } from '../../config';
 
+const router = useRouter();
 const route = useRoute();
 
 const category = ref<Category | object>({});
 const products = ref<Product[]>([]);
+
 const getProducts = async (): Promise<void> => {
   let requestUrl;
   if (route.params.category_id === 'all') {
@@ -44,13 +47,35 @@ const getCategory = async (): Promise<void> => {
   return undefined;
 };
 
+const addToBasket = (productId: number): undefined => {
+  if (!store.state.user || !store.state.user.basket) {
+    router.push('/register');
+    return undefined;
+  }
+  const { basket } = store.state.user;
+  const index = basket.findIndex((product) => product.id === productId);
+  if (index !== -1) {
+    basket[index].quantity += 1;
+  } else {
+    basket.push({ id: productId, quantity: 1 });
+  }
+  store.dispatch('updateUser');
+  return undefined;
+};
+
 onMounted(() => {
   getCategory();
   getProducts();
+  if (localStorage.getItem('token')) {
+    store.dispatch('fetchUser', store.getters.getUserFromToken(store.getters.getToken()).id);
+  }
 });
 </script>
 
 <template>
+  <pre>
+    {{store.state.user}}
+  </pre>
   <h1>{{ category.name }}</h1>
   <div class="products">
     <ProductCard
@@ -58,6 +83,7 @@ onMounted(() => {
       v-for="product in products"
       :key="product.id"
       :product="product"
+      @add-to-basket="addToBasket"
     />
   </div>
 <!--  TODO: add colors to categories ?-->
@@ -79,5 +105,4 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
 </style>

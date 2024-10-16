@@ -40,9 +40,6 @@ const goToUserProfile = () => {
 
 <template>
 <header>
-  <pre>
-    {{ store.state.user }}
-  </pre>
   <div class="left">
     <div class="burger-menu">
       <button @click="toggleDisplay">
@@ -61,7 +58,7 @@ const goToUserProfile = () => {
     <div class="basket">
       <img src="../assets/images/shopping-basket.svg" alt="Panier">
       <span class="badge">
-        {{ store.state.user !== undefined ? store.state.user.basket.length : 0}}
+        {{ store.state.user && store.state.user.basket ? store.state.user.basket.length : 0}}
       </span>
     </div>
   </div>
@@ -74,9 +71,19 @@ const goToUserProfile = () => {
       </button>
     </div>
     <ul>
-      <li v-for="category in mainCategories" :key="category.id">{{ category.name }}</li>
+      <li v-for="category in mainCategories" :key="category.id">
+        <router-link :to="{name: 'products', params: {category_id: category.id}}">
+          {{ category.name }}
+        </router-link>
+      </li>
     </ul>
-    <p>Tout voir</p>
+    <p>
+      <router-link
+        :to="{name: 'products', params: {category_id: 'all'}}"
+      >
+        Tout voir
+      </router-link>
+    </p>
     <ul>
       <li>À propos</li>
       <li>Contact</li>
@@ -176,11 +183,25 @@ header {
     margin: 0 3rem;
     li {
       margin: 3rem 0;
+      a {
+        color: $black;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
   p {
     text-align: center;
     text-transform: uppercase;
+    a {
+      color: $black;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>
