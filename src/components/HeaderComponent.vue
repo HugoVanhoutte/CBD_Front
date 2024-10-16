@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import router from '@/router';
 import { Category } from '../../config';
-
 import store from '../store';
+
 const mainCategories = ref<Category[]>([]);
 const getMainCategories = async ():Promise<void> => {
   const res = await fetch('http://localhost:3001/api/categories/main', {
@@ -26,6 +27,15 @@ const isMenuDisplayed = ref(false);
 const toggleDisplay = () => {
   isMenuDisplayed.value = !isMenuDisplayed.value;
 };
+
+const goToUserProfile = () => {
+  if (!store.state.user) {
+    router.push('/register');
+  } else {
+    console.log('Todo: envoyer user sur son profil');
+    // TODO: page profil
+  }
+};
 </script>
 
 <template>
@@ -40,10 +50,16 @@ const toggleDisplay = () => {
   </div>
   <div class="logo"><img src="../assets/images/logo.png" alt="Logo"></div>
   <div class="right">
-    <div class="profile"><img src="../assets/images/profile.svg" alt="Profile"></div>
+    <div class="profile">
+      <button @click="goToUserProfile()">
+        <img src="../assets/images/profile.svg" alt="Profile">
+      </button>
+    </div>
     <div class="basket">
       <img src="../assets/images/shopping-basket.svg" alt="Panier">
-      <span class="badge">{{ store.state.user.basket.length }}</span>
+      <span class="badge">
+        {{ store.state.user && store.state.user.basket ? store.state.user.basket.length : 0}}
+      </span>
     </div>
   </div>
 </header>
@@ -55,9 +71,19 @@ const toggleDisplay = () => {
       </button>
     </div>
     <ul>
-      <li v-for="category in mainCategories" :key="category.id">{{ category.name }}</li>
+      <li v-for="category in mainCategories" :key="category.id">
+        <router-link :to="{name: 'products', params: {category_id: category.id}}">
+          {{ category.name }}
+        </router-link>
+      </li>
     </ul>
-    <p>Tout voir</p>
+    <p>
+      <router-link
+        :to="{name: 'products', params: {category_id: 'all'}}"
+      >
+        Tout voir
+      </router-link>
+    </p>
     <ul>
       <li>À propos</li>
       <li>Contact</li>
@@ -157,11 +183,25 @@ header {
     margin: 0 3rem;
     li {
       margin: 3rem 0;
+      a {
+        color: $black;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
   p {
     text-align: center;
     text-transform: uppercase;
+    a {
+      color: $black;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

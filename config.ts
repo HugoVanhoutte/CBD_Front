@@ -23,11 +23,12 @@ export type ProductQuantity = {
 }
 
 export type User = {
-  id: number,
-  username: string,
-  email: string,
-  role: string,
-  basket: ProductQuantity[],
-  favorites: number[],
-  createdAt: Date,
+  id?: number,
+  username?: string,
+  email?: string,
+  password?: string,
+  role?: string,
+  basket?: ProductQuantity[],
+  favorites?: number[],
+  createdAt?: Date,
 }

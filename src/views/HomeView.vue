@@ -2,5 +2,5 @@
 
 </script>
 <template>
-  empty
+empty for now ..
 </template>

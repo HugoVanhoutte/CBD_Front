@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Category } from '../../config';
-import store from '../store';
 
 const mainCategories = ref<Category[]>([]);
 const getMainCategories = async ():Promise<void> => {
