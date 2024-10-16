@@ -73,9 +73,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <pre>
-    {{store.state.user}}
-  </pre>
   <h1>{{ category.name }}</h1>
   <div class="products">
     <ProductCard
