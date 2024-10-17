@@ -8,7 +8,9 @@
 
 <script setup>
 
-import router from '@/router';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const handleResponse = (isMajeur) => {
   if (isMajeur) {

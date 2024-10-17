@@ -3,6 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
+  rules:{'linebreak-style': 0},
   extends: [
     'plugin:vue/vue3-essential',
     '@vue/airbnb',

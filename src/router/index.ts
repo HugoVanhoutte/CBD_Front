@@ -3,8 +3,22 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/age-check', // Redirige automatiquement vers la vérification d'âge
+  },
+  {
+    path: '/access-denied',
+    name: 'access-denied',
+    component: () => import(/* webpackChunkName: "access-denied" */ '../views/AccessDeniedView.vue'),
+  },
+  {
+    path: '/age-check',
+    name: 'age-check',
+    component: () => import('../views/AgeCheck.vue'),
+  },
+  {
+    path: '/home',
     name: 'home',
-    component: () => import('@/views/HomeView.vue'),
+    component: () => import('../views/HomeView.vue'),
     beforeEnter: (to, from, next) => {
       const isMajeur = localStorage.getItem('isMajeur');
       if (isMajeur === 'true') {
