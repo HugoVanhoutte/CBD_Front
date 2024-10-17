@@ -26,6 +26,16 @@ const routes: Array<RouteRecordRaw> = [
     name: 'age-check',
     component: () => import('@/views/AgeCheck.vue'),
   },
+  {
+    path: '/products/:category_id',
+    name: 'products',
+    component: () => import('@/views/ProductsView.vue'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/RegisterView.vue'),
+  },
 ];
 
 const router = createRouter({
