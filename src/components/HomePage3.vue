@@ -9,8 +9,10 @@
           class="profile-picture"
         />
       </div>
-      <div class="profile-text">
+      <div class="profile-title">
         <p>Dr. Katarina Meister, ND</p>
+      </div>
+      <div class="profile-text">
         <p>
           Dr. Katarina Meister est médecin naturopathe et membre active de la
           Wisconsin Naturopathic Doctors Association et de l'American
@@ -23,7 +25,7 @@
 </template>
 
 <script setup>
-// Aucun script spécifique requis
+
 </script>
 
 <style scoped lang="scss">
@@ -33,7 +35,7 @@ $dark_green: #006633;
 $white: #ffffff;
 
 // FONTS
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,100..900&display=swap');
 $body: "Inter", sans-serif;
 $title: "Jost", serif;
 
@@ -41,10 +43,6 @@ $title: "Jost", serif;
 .homepage {
   padding: 20px;
   background-color: $white;
-}
-
-.video {
-  height: 500px;
 }
 
 // Section du profil de Dr. Katarina Meister
@@ -55,6 +53,7 @@ $title: "Jost", serif;
   margin-bottom: 40px;
 }
 
+// Container de l'image de profil
 .image-container {
   width: 150px;
   height: 150px;
@@ -62,17 +61,29 @@ $title: "Jost", serif;
   overflow: hidden; /* Pour que l'image reste à l'intérieur du cercle */
 }
 
+// Image de profil
 .profile-picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+// Titre centré
+.profile-title {
+  margin-top: 15px;
+  font-family: $title;
+  font-size: 1.4rem; /* Ajustez la taille selon vos préférences */
+  color: $black;
+  text-align: center; /* Centrer le titre */
+}
+
+// Description alignée à gauche
 .profile-text {
-  text-align: center;
+  text-align: left; /* Alignement à gauche de la description */
   margin-top: 15px;
   font-family: $body;
   font-size: 1.2rem;
   color: $black;
+  max-width: 600px; /* Limiter la largeur du texte */
 }
 </style>

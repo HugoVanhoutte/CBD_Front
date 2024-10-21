@@ -58,9 +58,11 @@ onMounted(() => {
     <div>
       <h1>Juridique</h1>
       <ul>
-        <li>Conditions d'utilisation</li>
-        <li>Politique de confidentialité</li>
-        <li>Expédition</li>
+        <li><router-link to="/condition">Conditions d'utilisation</router-link></li>
+        <li><router-link to="/mentions">Mentions Légales</router-link></li>
+        <li><router-link to="/accord">Payement</router-link></li>
+        <li><router-link to="/conditions">Politique de confidentialités</router-link></li>
+        <li><router-link to="/expedition">Expédition</router-link></li>
         <li>Remboursement</li>
       </ul>
     </div>

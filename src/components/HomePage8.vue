@@ -6,12 +6,13 @@
         Vous sentir commence par vous sentir au mieux.
         Rejoignez notre communauté de personnes qui ressentent et sont elles-mêmes authentiques.
       </p>
+      <div class="button-container">
+        <button class="about-button">À propos de nous</button>
+      </div>
     </div>
 
-    <!-- Section pour le bouton À propos de nous et les images -->
+    <!-- Section pour les images -->
     <div class="about-section">
-      <button class="about-button">À propos de nous</button>
-
       <!-- Nouveau container pour les images et le rectangle -->
       <div class="image-rectangle-container">
         <div class="image-container">
@@ -20,7 +21,7 @@
           </div>
           <div class="image-wrapper second-wrapper">
             <img src="../assets/images/gallery15.png"
-              alt="Image 2" class="about-image second-image">
+             alt="Image 2" class="about-image second-image">
           </div>
         </div>
 
@@ -61,19 +62,40 @@ $title: "Jost", serif;
 
   .text-section {
     padding: 50px 20px;
+    text-align: left; /* Aligne tout le texte à gauche */
 
     .main-title {
       font-family: $title; /* Utilisation de la police Jost pour le titre */
-      font-size: 2.4rem; /* Taille du titre pour tous les écrans */
-      margin-bottom: 20px;
+      font-size: 1.8rem; /* Taille du titre réduite pour être sur une seule ligne */
+      margin-bottom: 10px; /* Réduit l'espace en bas pour rapprocher le bouton */
     }
 
     .description {
       font-family: $body; /* Utilisation de la police Inter pour la description */
-      font-size: 1.6rem; /* Taille de la description pour tous les écrans */
+      font-size: 1.2rem; /* Taille de la description ajustée */
       line-height: 1.5;
       max-width: 700px;
-      margin: 0 auto; /* Centrer le texte */
+      margin: 0 auto; /* Centrer le texte horizontalement */
+      text-align: left; /* Aligne le texte à gauche */
+    }
+
+    /* Conteneur pour centrer le bouton */
+    .button-container {
+      display: flex; /* Utiliser flex pour centrer le bouton */
+      justify-content: center; /* Centrer le bouton horizontalement */
+      margin-top: 20px; /* Espace au-dessus du bouton */
+    }
+
+    .about-button {
+      background-color: $about-button-color;
+      color: $white; /* Utilisation de la variable blanche */
+      padding: 10px 20px;
+      border: none;
+      font-size: 1.4rem; /* Taille du bouton ajustée */
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      display: inline-block; /* Pour centrer le bouton */
     }
   }
 
@@ -83,19 +105,6 @@ $title: "Jost", serif;
     flex-direction: column;
     align-items: center; /* Centrer les éléments */
     padding: 20px;
-
-    .about-button {
-      background-color: $about-button-color;
-      color: $white; /* Utilisation de la variable blanche */
-      padding: 10px 20px;
-      border: none;
-      font-size: 1.8rem; /* Taille du bouton pour tous les écrans */
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 20px; /* Marge en bas pour espacer le bouton des images */
-    }
 
     .image-rectangle-container {
       display: flex;
