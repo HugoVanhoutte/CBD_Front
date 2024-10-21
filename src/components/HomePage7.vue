@@ -84,13 +84,13 @@ $title: "Jost", serif;
 }
 
 .testimonial-image {
-  width: 100%; /* Largeur de l'image */
+  width: 90%; /* Largeur de l'image */
   margin: 0; /* Supprimer les marges pour l'image */
   margin-bottom: -30px; /* Ajuster la marge inférieure pour remonter l'image */
 }
 
 .testimonial-text {
-  bottom: 20px; /* Descendre le texte vers le bas */
+  bottom: -90px; /* Descendre le texte vers le bas */
   left: auto; /* Supprimer le décalage à gauche */
   right: 0; /* Garder le texte à droite */
   width: 70%; /* Étendre le texte à 70% de la largeur */

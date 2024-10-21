@@ -33,22 +33,47 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/access-denied',
     name: 'access-denied',
-    component: () => import(/* webpackChunkName: "access-denied" */ '@/views/AccessDeniedView.vue'),
+    component: () => import(/* webpackChunkName: "access-denied" */ '../views/AccessDeniedView.vue'),
   },
   {
     path: '/age-check',
     name: 'age-check',
-    component: () => import('@/views/AgeCheck.vue'),
+    component: () => import('../views/AgeCheck.vue'),
   },
   {
     path: '/products/:category_id',
     name: 'products',
-    component: () => import('@/views/ProductsView.vue'),
+    component: () => import('../views/ProductsView.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/RegisterView.vue'),
+    component: () => import('../views/RegisterView.vue'),
+  },
+  {
+    path: '/condition',
+    name: 'condition',
+    component: () => import('../views/ConditionUtilisation.vue'),
+  },
+  {
+    path: '/mentions',
+    name: 'mentions',
+    component: () => import('../views/MentionsLegales.vue'),
+  },
+  {
+    path: '/accord',
+    name: 'accord',
+    component: () => import('../views/AccordView.vue'),
+  },
+  {
+    path: '/expedition',
+    name: 'expedition',
+    component: () => import('../views/ExpeditionView.vue'),
+  },
+  {
+    path: '/conditions',
+    name: 'conditions',
+    component: () => import('../views/PolitiqueView.vue'),
   },
 ];
 

@@ -7,9 +7,10 @@
         Éliminez le stress lié à la décision et explorez nos formules éprouvées,
         toutes conçues pour s'adapter à votre poche et à votre routine.
       </p>
-      <button class="cta-button">Commencez l'échantillonnage</button>
+      <div class="button-container">
+        <button class="cta-button">Commencez l'échantillonnage</button>
+      </div>
     </div>
-    <!-- Section avec une image de fond -->
     <div class="image-background"></div>
   </div>
 </template>
@@ -21,7 +22,6 @@
 $sampling-bg: #ffffff; /* Fond blanc pour la partie texte */
 $black: #000000;
 $white: #ffffff;
-$dark_green: #006633;
 $cta-bg-hover: #004d26; /* Couleur du bouton au survol */
 $bg-image-url: url('../assets/images/gallery12.png'); /* URL de l'image de fond */
 
@@ -37,54 +37,56 @@ $title-font: "Jost", serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  text-align: left; /* Aligner la page à gauche */
+  text-align: left;
 
   .text-section {
     background-color: $sampling-bg;
-    padding: 50px 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Aligner le texte et le bouton au centre */
+    align-items: flex-start;
     width: 100%;
 
     .main-title {
-      font-size: 3rem;
+      font-size: 2rem; /* Même taille que la homepage */
+      margin-bottom: 15px;
+      font-weight: bold;
       font-family: $title-font;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      margin-top: 20px; /* Ajout d'une marge en haut */
     }
 
     .sub-title {
-      font-size: 2rem;
+      font-size: 1.5rem; /* Taille légèrement plus petite pour le sous-titre */
       font-family: $title-font;
-      margin-bottom: 20px;
-      margin-top: 10px; /* Ajout d'une marge en haut */
+      margin-bottom: 15px;
     }
 
     .description {
-      font-size: 1.2rem;
+      font-size: 1.2rem; /* Taille de police unifiée avec la homepage */
       line-height: 1.5;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       font-family: $body-font;
       max-width: 700px;
-      margin-top: 10px; /* Ajout d'une marge en haut */
-      text-align: center; /* Centrer la description */
+      text-align: left;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
     .cta-button {
       background-color: $black;
       color: $white;
-      padding: 12px 30px;
+      padding: 12px 20px;
       border: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       text-transform: uppercase;
       font-weight: bold;
       font-family: $body-font;
       transition: background-color 0.3s ease;
-      margin-bottom: 0; /* Aucune marge sous le bouton */
       box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
 
       &:hover {

@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-// Aucun script spécifique requis pour cette page statique
+
 </script>
 
 <style scoped lang="scss">
