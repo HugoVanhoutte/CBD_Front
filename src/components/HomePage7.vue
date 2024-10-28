@@ -90,7 +90,7 @@ $title: "Jost", serif;
 }
 
 .testimonial-text {
-  bottom: -90px; /* Descendre le texte vers le bas */
+  bottom: -250px; /* Descendre le texte vers le bas */
   left: auto; /* Supprimer le décalage à gauche */
   right: 0; /* Garder le texte à droite */
   width: 70%; /* Étendre le texte à 70% de la largeur */

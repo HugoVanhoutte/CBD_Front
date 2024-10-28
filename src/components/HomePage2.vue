@@ -34,13 +34,11 @@ const nextSlide = () => {
 };
 
 const startDrag = (e: { clientX: number; }) => {
-  console.log('startDrag');
   isDragging.value = true;
   startX.value = e.clientX;
   offsetX.value = 0;
 };
 const onDrag = (e: { clientX: number; }) => {
-  console.log('onDrag');
   if (!isDragging.value) return;
   offsetX.value = e.clientX - startX.value;
 
@@ -54,7 +52,6 @@ const onDrag = (e: { clientX: number; }) => {
 };
 
 const endDrag = () => {
-  console.log('endDrag');
   isDragging.value = false;
 };
 

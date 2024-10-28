@@ -75,6 +75,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'conditions',
     component: () => import('../views/PolitiqueView.vue'),
   },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: import('../views/admin/AdminPanel.vue'),
+  },
 ];
 
 const router = createRouter({
